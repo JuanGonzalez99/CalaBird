@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+./EXEC
+EXEC/
+CalaBird.depend
+CalaBird.layout
