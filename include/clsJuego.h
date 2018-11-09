@@ -5,6 +5,7 @@
 #include <clsEvent.h>
 #include <clsMusic.h>
 #include <clsScreen.h>
+#include <clsPajaro.h>
 
 class clsJuego
 {
@@ -13,6 +14,7 @@ class clsJuego
         clsEvent *event;
         clsMusic *music;
         clsScreen *screen;
+        clsPajaro pajaro;
 
     public:
         int init(clsScreen*, clsEvent*, clsMusic*);

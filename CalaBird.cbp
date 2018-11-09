@@ -150,11 +150,13 @@ Avis adn++ es un producto registrado de Avis SOFTWARE.
 		<Unit filename="include/clsIntro.h" />
 		<Unit filename="include/clsJuego.h" />
 		<Unit filename="include/clsMotor.h" />
+		<Unit filename="include/clsPajaro.h" />
 		<Unit filename="include/clsSalida.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/clsIntro.cpp" />
 		<Unit filename="src/clsJuego.cpp" />
 		<Unit filename="src/clsMotor.cpp" />
+		<Unit filename="src/clsPajaro.cpp" />
 		<Unit filename="src/clsSalida.cpp" />
 		<Extensions>
 			<code_completion />

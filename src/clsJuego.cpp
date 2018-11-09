@@ -8,6 +8,9 @@ int clsJuego::init(clsScreen* scr, clsEvent* ev, clsMusic* mus)
     event = ev;
     music = mus;
 
+    error.set(pajaro.init());
+    if(error.get()) return error.get();
+
     return error.get();
 }
 
