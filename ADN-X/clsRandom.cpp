@@ -73,8 +73,6 @@ void clsRandom::init()
 {
   time_t t;
   srand((unsigned) time(&t));
-
-  cout << "Generador de numeros aleatorios iniciado correctamente." << endl;
 }
 
 //=============================================================================

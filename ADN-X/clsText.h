@@ -91,7 +91,6 @@ class clsText
   public:
     int init();                          // Inicializa el modo texto para el
                                          // modo grafico.
-    ~clsText();                          // Destructor.
     int  loadFont(const char*, int);     // Carga un archivo fuente tipo ttf.
     void setFontColor(rgbColor);         // Cambia el color de la fuente.
     void setBackColor(rgbColor);         // Cambia el color del fondo.

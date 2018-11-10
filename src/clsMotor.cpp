@@ -48,3 +48,4 @@ int clsMotor::run()
 
     return error.get();
 }
+

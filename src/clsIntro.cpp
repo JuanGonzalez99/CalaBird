@@ -65,9 +65,15 @@ int clsIntro::run()
         if(event->wasEvent())
         {
             if(event->getEventType() == SDL_QUIT || event->getKey() == KEY_ESCAPE)
+            {
+                music->closeMusic();
                 return -1;
+            }
             if(event->getKey() == KEY_ENTER)
+            {
+                music->closeMusic();
                 return 0;
+            }
         }
         timer->wait(150);
         animar();

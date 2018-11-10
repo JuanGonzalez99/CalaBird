@@ -113,6 +113,9 @@ void clsError::show(bool rtn=false)
          case   1: strcpy(msg,"ERROR AL INICIAR DIRECTMEDIA.");
                    break;
 
+         case   2: strcpy(msg,"ERROR EN ASIGNACION DE MEMORIA.");
+                   break;
+
         //---------------------------------------------------------------------
         // <100> ERRORES DEL SUBSISTEMA DE VIDEO
         //---------------------------------------------------------------------

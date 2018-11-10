@@ -153,6 +153,11 @@ rgbColor clsScreen::getColor(){return color;}
 int clsScreen::init(int w, int h, int d,
                     titlebar bar, uint32_t flags)
 {
+  if(SDL_putenv("SDL_VIDEO_WINDOW_POS=center"))
+  {
+    error.set(800);
+    return error.get();
+  }
   if(flags)
   {
     screenPointer = SDL_SetVideoMode(w,h,d,HARDWARE|DOUBLEBUFFER|flags);

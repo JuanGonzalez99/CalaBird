@@ -95,17 +95,6 @@ int clsText::init()
 }
 
 //=============================================================================
-// METODO    :  ~clsText()
-// ACCION    : Destructor.
-// PARAMETROS: NADA.
-// DEVUELVE  : NADA.
-//-----------------------------------------------------------------------------
-clsText::~clsText()
-{
-  cout << "El texto " << getFontFile() << " se cerro correctamente." << endl;
-}
-
-//=============================================================================
 // METODO    : int loadFont(char* file, int size)
 // ACCION    : Carga un archivo de fuente tipo ttf..
 // PARAMETROS: char* file -> Ruta y nombre del archivo ttf.
