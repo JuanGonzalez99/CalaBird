@@ -32,7 +32,7 @@ int clsMenu::init(clsScreen *s, clsMusic *m, clsEvent *e, clsTimer *t)
             if(error.get())
                 return error.get();
 
-            if(d*10+u == 13)
+            if(d*10+u == 2)
                 break;
         }
     }
@@ -44,7 +44,7 @@ int clsMenu::init(clsScreen *s, clsMusic *m, clsEvent *e, clsTimer *t)
 void clsMenu::opciones()
 {
     paste(screen->getPtr());
-    if(getI() == 13)
+    if(getI() == 3)
         setI(0);
     else
         setI(getI() + 1);
@@ -71,7 +71,6 @@ int clsMenu::run()
                 return 0;
             }
         }
-        timer->wait(150);
         opciones();
         screen->refresh();
     }
