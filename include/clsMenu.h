@@ -13,15 +13,13 @@ class clsMenu : public clsSprite
 {
     public:
        void inherit(){};
-       int init(clsScreen*, clsMusic*, clsEvent*, clsTimer*);
+       int init(clsScreen*, clsMusic*, clsEvent*);
        void opciones();
        int run();
     private:
         clsScreen *screen;
         clsMusic *music;
         clsEvent *event;
-        clsText texto;
-        clsTimer *timer;
 };
 
 #endif // CLSMENU_H

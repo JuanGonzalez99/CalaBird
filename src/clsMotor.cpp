@@ -23,6 +23,9 @@ int clsMotor::init()
     error.set(intro.init(&screen, &music, &event, &timer));
     if(error.get()) return error.get();
 
+    error.set(menu.init(&screen, &music, &event));
+    if(error.get()) return error.get();
+
     error.set(juego.init(&screen, &event, &music));
     if(error.get()) return error.get();
 
@@ -38,7 +41,7 @@ int clsMotor::run()
     if(error.get() > 0) return error.get();
     if(error.get() < 0) return 0;
 
-    error.set(juego.run());
+    error.set(menu.run());
     if(error.get() > 0) return error.get();
     if(error.get() < 0) return 0;
 

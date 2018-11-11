@@ -12,6 +12,7 @@
 #include <clsAudio.h>
 #include <clsJuego.h>
 #include <clsSalida.h>
+#include <clsMenu.h>
 
 class clsMotor
 {
@@ -27,6 +28,7 @@ class clsMotor
         clsScreen screen;
         clsText texto;
         clsTimer timer;
+        clsMenu menu;
 
     public:
         int init();

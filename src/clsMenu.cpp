@@ -1,26 +1,18 @@
 #include "clsMenu.h"
 
-int clsMenu::init(clsScreen *s, clsMusic *m, clsEvent *e, clsTimer *t)
+int clsMenu::init(clsScreen *s, clsMusic *m, clsEvent *e)
 {
     screen = s;
     music = m;
     event = e;
-    timer = t;
+
 
     error.set(music->loadMusic("MUSIC/MENU.mp3"));
     if(error.get()) return error.get();
 
-    error.set(texto.init());
-    if(error.get()) return error.get();
-
-    error.set(texto.loadFont("FONTS/FreeMono.ttf",30));
-    if(error.get()) return error.get();
-
-    texto.setFontColor(WHITE);
-
     setItems(3);
-    char ruta[]= "IMAGES/MENUINTRO/00.jpg";
-    for(int d=0; d<2; d++)
+    char ruta[]= "IMAGES/MENUINTRO/00.png";
+    for(int d=0; d<1; d++)
     {
         ruta[17] = d + 48;
         for(int u=0; u<10; u++)
