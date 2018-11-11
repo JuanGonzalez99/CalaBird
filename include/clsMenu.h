@@ -18,7 +18,7 @@ class clsMenu : public clsSprite
        int run();
     private:
         clsScreen *screen;
-        clsMusic *music;
+        clsMusic *musicMenu;
         clsEvent *event;
 };
 

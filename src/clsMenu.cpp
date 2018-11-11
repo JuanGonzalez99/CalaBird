@@ -3,12 +3,8 @@
 int clsMenu::init(clsScreen *s, clsMusic *m, clsEvent *e)
 {
     screen = s;
-    music = m;
+    musicMenu = m;
     event = e;
-
-
-    error.set(music->loadMusic("MUSIC/MENU.mp3"));
-    if(error.get()) return error.get();
 
     setItems(3);
     char ruta[]= "IMAGES/MENUINTRO/00.png";
@@ -46,7 +42,10 @@ int clsMenu::run()
 {
     error.set(0);
 
-    music->playMusic(-1);
+  error.set(musicMenu->loadMusic("MUSIC/MENU.mp3"));
+  if(error.get()) return error.get();
+
+    musicMenu->playMusic(-1);
 
     while(true)
     {
@@ -54,12 +53,12 @@ int clsMenu::run()
         {
             if(event->getEventType() == SDL_QUIT || event->getKey() == KEY_ESCAPE)
             {
-                music->closeMusic();
+                musicMenu->closeMusic();
                 return -1;
             }
             if(event->getKey() == KEY_ENTER)
             {
-                music->closeMusic();
+                musicMenu->closeMusic();
                 return 0;
             }
         }

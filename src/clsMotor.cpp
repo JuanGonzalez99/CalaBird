@@ -45,6 +45,10 @@ int clsMotor::run()
     if(error.get() > 0) return error.get();
     if(error.get() < 0) return 0;
 
+    // error.set(juego.run());
+    // if(error.get() > 0) return error.get();
+    // if(error.get() < 0) return 0;
+
 //    error.set(salida.run());
 //    if(error.get() > 0) return error.get();
 //    if(error.get() < 0) return 0;
