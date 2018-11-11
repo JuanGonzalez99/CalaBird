@@ -18,8 +18,8 @@ int clsMenu::init(clsScreen *s, clsMusic *m, clsEvent *e, clsTimer *t)
 
     texto.setFontColor(WHITE);
 
-    setItems(14);
-    char ruta[]= "IMAGES/MAGOINTRO/00.jpg";
+    setItems(3);
+    char ruta[]= "IMAGES/MENUINTRO/00.jpg";
     for(int d=0; d<2; d++)
     {
         ruta[17] = d + 48;
@@ -55,8 +55,6 @@ int clsMenu::run()
     error.set(0);
 
     music->playMusic(-1);
-
-    texto.write("Menu de opciones",400,200,screen->getPtr());
 
     while(true)
     {
