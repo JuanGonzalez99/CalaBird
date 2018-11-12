@@ -32,7 +32,7 @@ int clsMenu::init(clsScreen *s, clsMusic *m, clsEvent *e)
 void clsMenu::opciones()
 {
     paste(screen->getPtr());
-    if(getI() == 3)
+    if(getI() == 2)
         setI(0);
     else
         setI(getI() + 1);
@@ -42,8 +42,8 @@ int clsMenu::run()
 {
     error.set(0);
 
-  error.set(musicMenu->loadMusic("MUSIC/MENU.mp3"));
-  if(error.get()) return error.get();
+    error.set(musicMenu->loadMusic("MUSIC/MENU.mp3"));
+    if(error.get()) return error.get();
 
     musicMenu->playMusic(-1);
 
@@ -51,12 +51,12 @@ int clsMenu::run()
     {
         if(event->wasEvent())
         {
-            if(event->getEventType() == SDL_QUIT || event->getKey() == KEY_ESCAPE)
+            if(event->getEventType() == SDL_QUIT || (event->getEventType() == KEY_PRESSED && event->getKey() == KEY_ESCAPE))
             {
                 musicMenu->closeMusic();
                 return -1;
             }
-            if(event->getKey() == KEY_ENTER)
+            if(event->getEventType() == KEY_PRESSED && event->getKey() == KEY_ENTER)
             {
                 musicMenu->closeMusic();
                 return 0;
