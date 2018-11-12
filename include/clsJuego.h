@@ -8,16 +8,20 @@
 #include <clsPajaro.h>
 #include <clsParedes.h>
 #include <clsFondo.h>
+#include <clsTimer.h>
 
 class clsJuego
 {
     private:
+        int FRAMES_POR_SEGUNDO;
         clsError error;
         clsEvent *event;
+        clsFondo fondo;
         clsMusic *music;
         clsScreen *screen;
+        clsPajaro pajaro;
         clsParedes paredes;
-        clsFondo fondo;
+        clsTimer fps;
 
     public:
         int init(clsScreen*, clsEvent*, clsMusic*);

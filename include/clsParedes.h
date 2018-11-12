@@ -20,6 +20,7 @@ class clsParedes
         int init(clsScreen*);
         void mostrar();
         void mover(int);
+        bool seTocan(clsSprite*);
         ~clsParedes();
 };
 

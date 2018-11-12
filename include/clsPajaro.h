@@ -3,16 +3,20 @@
 
 #include <clsSprite.h>
 #include <clsEvent.h>
+#include <clsScreen.h>
 
 class clsPajaro : public clsSprite
 {
     private:
-
+        int status;
+        clsScreen *screen;
 
     public:
         void inherit(){}
-        int init();
-        void manejoEventos(clsEvent&);
+        int init(clsScreen*);
+        void manejoEventos(clsEvent*);
+        void setStatus(int);
+        int getStatus();
 };
 
 #endif // CLSPAJARO_H

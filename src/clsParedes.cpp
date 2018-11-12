@@ -4,8 +4,8 @@ int clsParedes::init(clsScreen *scr)
 {
     screen = scr;
     cantParedes = 100;
-    distHorizontal = 300;
-    distVertical = 128;
+    distHorizontal = 400;
+    distVertical = 150;
 
     random.init();
 
@@ -24,10 +24,10 @@ int clsParedes::init(clsScreen *scr)
         if(error.get()) return error.get();
 
         superiores[x].setY(random.getNumber(screen->getHeight()-distVertical*2)+distVertical-screen->getHeight());
-        superiores[x].setX(distHorizontal*x);
+        superiores[x].setX(distHorizontal*x+screen->getWidth()*3/2);
 
         inferiores[x].setY(superiores[x].getY()+screen->getHeight()+distVertical);
-        inferiores[x].setX(distHorizontal*x);
+        inferiores[x].setX(distHorizontal*x+screen->getWidth()*3/2);
     }
 
     return 0;
@@ -51,8 +51,21 @@ void clsParedes::mover(int dist)
     }
 }
 
+bool clsParedes::seTocan(clsSprite *sprite)
+{
+    for(int x=0; x<cantParedes; x++)
+    {
+        if(superiores[x].getContact(sprite))
+            return true;
+
+        if(inferiores[x].getContact(sprite))
+            return true;
+    }
+    return false;
+}
+
 clsParedes::~clsParedes()
 {
-//    delete inferiores;
-//    delete superiores;
+    delete inferiores;
+    delete superiores;
 }
