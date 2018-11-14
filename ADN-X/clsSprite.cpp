@@ -211,7 +211,6 @@ int clsSprite::setI(int item)
 //-----------------------------------------------------------------------------
 void clsSprite::paste(SDL_Surface* sup)
 {
-  rgbColor cDot;
   int W=spritePointer[i].getPtr()->w;
   int H=spritePointer[i].getPtr()->h;
   SDL_Rect area = {getX(),getY(),W,H};
@@ -231,7 +230,6 @@ void clsSprite::paste(SDL_Surface* sup)
 //-----------------------------------------------------------------------------
 void clsSprite::paste(int X,int Y,SDL_Surface* sup)
 {
-  rgbColor cDot;
   int W=spritePointer[i].getPtr()->w;
   int H=spritePointer[i].getPtr()->h;
 

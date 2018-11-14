@@ -21,6 +21,7 @@ class clsParedes
         void mostrar();
         void mover(int);
         bool seTocan(clsSprite*);
+        int pasadas(clsSprite*);
         ~clsParedes();
 };
 

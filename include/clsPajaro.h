@@ -8,15 +8,13 @@
 class clsPajaro : public clsSprite
 {
     private:
-        int status;
-        clsScreen *screen;
+        bool subir;
 
     public:
         void inherit(){}
-        int init(clsScreen*);
+        int init();
         void manejoEventos(clsEvent*);
-        void setStatus(int);
-        int getStatus();
+        bool getSubir();
 };
 
 #endif // CLSPAJARO_H

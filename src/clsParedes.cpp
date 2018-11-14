@@ -4,7 +4,7 @@ int clsParedes::init(clsScreen *scr)
 {
     screen = scr;
     cantParedes = 100;
-    distHorizontal = 400;
+    distHorizontal = 450;
     distVertical = 150;
 
     random.init();
@@ -62,6 +62,19 @@ bool clsParedes::seTocan(clsSprite *sprite)
             return true;
     }
     return false;
+}
+
+int clsParedes::pasadas(clsSprite *spr)
+{
+    int cont=0;
+
+    for(int x=0; x<cantParedes; x++)
+    {
+        if(spr->getX() >= superiores[x].getX()+superiores[x].getWidth())
+            cont++;
+    }
+
+    return cont;
 }
 
 clsParedes::~clsParedes()

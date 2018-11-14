@@ -17,9 +17,6 @@ int clsMotor::init()
     error.set(audio.init());
     if(error.get()) return error.get();
 
-    error.set(texto.init());
-    if(error.get()) return error.get();
-
     error.set(intro.init(&screen, &music, &event, &timer));
     if(error.get()) return error.get();
 

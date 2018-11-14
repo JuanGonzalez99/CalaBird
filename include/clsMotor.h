@@ -24,9 +24,8 @@ class clsMotor
         clsJuego juego;
         clsMode mode;
         clsMusic music;
-        clsSalida salida;
+//        clsSalida salida;
         clsScreen screen;
-        clsText texto;
         clsTimer timer;
         clsMenu menu;
 

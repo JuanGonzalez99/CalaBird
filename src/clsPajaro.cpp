@@ -1,10 +1,8 @@
 #include "clsPajaro.h"
 
-int clsPajaro::init(clsScreen *scr)
+int clsPajaro::init()
 {
     error.set(0);
-
-    screen = scr;
 
     setItems(2);
     setI(0);
@@ -15,41 +13,37 @@ int clsPajaro::init(clsScreen *scr)
     if(error.get()) return error.get();
 
     setI(0);
-    status = 0;
 
-    setX(100);
+    setX(200);
     setY(100);
+    subir = false;
 
     return error.get();
 }
 
-void clsPajaro::manejoEventos(clsEvent *event)
+void clsPajaro::manejoEventos(clsEvent* event)
 {
-    if(event->getEventType() == KEY_PRESSED)
+    switch(event->getEventType())
     {
-        switch(event->getKey())
+    case KEY_PRESSED:
         {
-        case KEY_SPACE:
+            if(event->getKey() == KEY_SPACE)
             {
-
-            }break;
-        }
-    }
-    if(event->getEventType() == KEY_FREE)
-    {
-        switch(event->getKey())
+                subir = true;
+            }
+        }break;
+    case KEY_FREE:
         {
-
-        }
+            if(event->getKey() == KEY_SPACE)
+            {
+                subir = false;
+            }
+        }break;
     }
 }
 
-void clsPajaro::setStatus(int stat)
+bool clsPajaro::getSubir()
 {
-    status = stat;
+    return subir;
 }
 
-int clsPajaro::getStatus()
-{
-    return status;
-}
