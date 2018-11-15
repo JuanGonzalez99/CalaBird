@@ -1,3 +1,4 @@
+
 #include "clsMenu.h"
 
 int clsMenu::init(clsScreen *s, clsMusic *m, clsEvent *e)

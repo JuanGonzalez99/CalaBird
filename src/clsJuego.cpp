@@ -48,8 +48,7 @@ int clsJuego::run()
     error.set(0);
 
     error.set(menu.run());
-    if(error.get() > 0) return error.get();
-    if(error.get() == -1) return 0;
+    if(error.get()) return error.get();
 
     char aux[5];
 
@@ -83,9 +82,11 @@ int clsJuego::run()
             if(pajaro.getY()+pajaro.getHeight()+10 <= screen->getHeight())
                 pajaro.setY(pajaro.getY()+10);
         }
-        else if(pajaro.getY()-10 >= 0)
-            pajaro.setY(pajaro.getY()-10);
-
+        else
+        {
+            if(pajaro.getY()-10 >= 0)
+                pajaro.setY(pajaro.getY()-10);
+        }
         if(paredes.seTocan(&pajaro))//Verificamos si el pajaro se choco con una pared
             pajaro.setI(1);
 
@@ -167,6 +168,7 @@ int clsJuego::gameOver()
     texto.write("Cargando...", 50, screen->getHeight()-100, screen->getPtr());
     screen->refresh();
 
+    nombre[i]='\0';
     puntaje.setNombre(nombre);
     puntaje.guardar();
 
