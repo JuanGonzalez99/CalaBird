@@ -9,17 +9,15 @@ int clsJuego::init(clsScreen* scr, clsEvent* ev, clsMusic* mus)
     music = mus;
     FRAMES_POR_SEGUNDO = 20;
 
-    error.set(puntaje.init());
-    if(error.get()) return error.get();
-    error.set(puntaje.loadFont("FONTS/FreeSans.ttf", 30));
-    if(error.get()) return error.get();
-
     error.set(texto.init());
     if(error.get()) return error.get();
     error.set(texto.loadFont("FONTS/FreeSans.ttf", 60));
     if(error.get()) return error.get();
 
-    error.set(pajaro.init());
+    error.set(menu.init(screen, music, event));
+    if(error.get()) return error.get();
+
+    error.set(puntaje.init());
     if(error.get()) return error.get();
 
     error.set(fondo.init());
@@ -28,12 +26,26 @@ int clsJuego::init(clsScreen* scr, clsEvent* ev, clsMusic* mus)
     error.set(paredes.init(screen));
     if(error.get()) return error.get();
 
+    error.set(txtPuntos.init());
+    if(error.get()) return error.get();
+    error.set(txtPuntos.loadFont("FONTS/FreeSans.ttf", 30));
+    if(error.get()) return error.get();
+
+    error.set(pajaro.init());
+    if(error.get()) return error.get();
+
     return error.get();
 }
 
 int clsJuego::run()
 {
     error.set(0);
+
+    error.set(menu.run());
+    if(error.get() > 0) return error.get();
+    if(error.get() == -1) return 0;
+
+    char aux[5];
 
     while(true)
     {
@@ -48,16 +60,16 @@ int clsJuego::run()
         }
 
         //Manejo de fondo y paredes
-        if(fondo.getX()<-1000)
-            fondo.setX(-150);
-        else
-            fondo.setX(fondo.getX()-15);
+        if(fondo.getX()<-1000) fondo.setX(-150);
+        else fondo.setX(fondo.getX()-15);
         fondo.paste(screen->getPtr());
         paredes.mover(15);
         paredes.mostrar();
 
         //Manejo de puntaje
-        puntaje.mostrar(paredes.pasadas(&pajaro), screen->getWidth()-100, 75, screen->getPtr());
+        itoa(paredes.pasadas(&pajaro), aux, 10);
+        txtPuntos.write(aux, screen->getWidth()-100, 75, screen->getPtr());
+        puntaje.setPuntos(paredes.pasadas(&pajaro));
 
         //Manejo del pajaro
         if(!pajaro.getSubir() || pajaro.getI() == 1)
@@ -65,24 +77,20 @@ int clsJuego::run()
             if(pajaro.getY()+pajaro.getHeight()+10 <= screen->getHeight())
                 pajaro.setY(pajaro.getY()+10);
         }
-        else
-        {
-            if(pajaro.getY()-10 >= 0)
-                pajaro.setY(pajaro.getY()-10);
-        }
+        else if(pajaro.getY()-10 >= 0)
+            pajaro.setY(pajaro.getY()-10);
+
         if(paredes.seTocan(&pajaro))//Verificamos si el pajaro se choco con una pared
             pajaro.setI(1);
 
         if(pajaro.getI() == 1)      //Si el pajaro esta "muerto", hacemos que se mueva con el fondo
             pajaro.setX(pajaro.getX()-15);
 
+        if(pajaro.getX()<-300)      //Cuando hayan pasado unos segundos desde su fallecimiento, llamamos a gameOver()
+            break;
+
         pajaro.paste(screen->getPtr());
 
-        if(pajaro.getX()<-300)      //Cuando hayan pasado unos segundos desde su fallecimiento, llamamos a gameOver()
-        {
-            gameOver();
-//            return 0;
-        }
 
         screen->refresh();
 
@@ -91,22 +99,31 @@ int clsJuego::run()
             SDL_Delay((1000/FRAMES_POR_SEGUNDO) - fps.getState());
 
     }//Fin while
+    gameOver();
+
+    error.set(init(screen, event, music));
+    if(error.get()) return error.get();
+
+    error.set(run());
+    if(error.get()) return error.get();
 
     return error.get();
 }
 
-void clsJuego::gameOver()
+int clsJuego::gameOver()
 {
+    error.set(0);
+
     char nombre[5+1]="";
     int i=0;
 
-    while(event->getKey() != KEY_ENTER || strlen(nombre)<5)
+    while(event->getKey() != KEY_ENTER || strlen(nombre)<1)
     {
         if(event->wasEvent())
         {
             if(event->getEventType() == KEY_PRESSED)
             {
-                char letra = (char) event->getKey();
+                int letra = (int) event->getKey();
                 if(letra == ' ' || (letra >= '0' && letra <= '9') || (letra >= 'a' && letra <= 'z'))
                 {
                     if(event->getKeyMode() == KEY_MDF_CAPSLOCK && letra != ' ' && (letra < '0' || letra > '9'))
@@ -118,7 +135,11 @@ void clsJuego::gameOver()
                         i++;
                     }
                 }
-                //HACER BACKSPACE
+                if(event->getKey() == KEY_BACKSPACE && i > 0)
+                {
+                    nombre[i-1] = '\0';
+                    i--;
+                }
             }
         }
         screen->clean(VIOLET);
@@ -127,4 +148,14 @@ void clsJuego::gameOver()
             texto.centredWrite(nombre, screen->getHeight()/2 - texto.getHeight()/2, screen->getPtr());
         screen->refresh();
     }
+
+    screen->clean(BLACK);
+    texto.setFontColor(WHITE);
+    texto.write("Cargando...", 50, screen->getHeight()-100, screen->getPtr());
+    screen->refresh();
+
+    puntaje.setNombre(nombre);
+    puntaje.guardar();
+
+    return error.get();
 }

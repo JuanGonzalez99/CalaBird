@@ -1,15 +1,23 @@
 #ifndef CLSPUNTAJE_H
 #define CLSPUNTAJE_H
 
-#include <clsText.h>
+#include <cstdio>
+#include <cstring>
 
-
-class clsPuntaje : public clsText
+class clsPuntaje
 {
     public:
-        void mostrar(int, int, int, SDL_Surface*);
+        int init();
+        void guardar();
+        void setNombre(const char*);
+        void setPuntos(int);
+        int getPuntos();
+        const char* getNombre();
+        void operator=(clsPuntaje);
 
     protected:
+        int puntos;
+        char nombre[5+1];
 
 };
 

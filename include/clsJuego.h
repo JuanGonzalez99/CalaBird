@@ -3,6 +3,7 @@
 
 #include <clsError.h>
 #include <clsEvent.h>
+#include <clsMenu.h>
 #include <clsMusic.h>
 #include <clsScreen.h>
 #include <clsPajaro.h>
@@ -21,16 +22,18 @@ class clsJuego
         clsMusic *music;
         clsScreen *screen;
         clsFondo fondo;
+        clsMenu menu;
         clsPajaro pajaro;
         clsParedes paredes;
         clsPuntaje puntaje;
+        clsText txtPuntos;
         clsText texto;
         clsTimer fps;
 
     public:
         int init(clsScreen*, clsEvent*, clsMusic*);
         int run();
-        void gameOver();
+        int gameOver();
 };
 
 #endif // CLSJUEGO_H

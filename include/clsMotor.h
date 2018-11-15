@@ -27,7 +27,6 @@ class clsMotor
 //        clsSalida salida;
         clsScreen screen;
         clsTimer timer;
-        clsMenu menu;
 
     public:
         int init();
