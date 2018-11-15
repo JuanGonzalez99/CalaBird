@@ -62,8 +62,30 @@ int clsJuego::run()
         {
             if(event->getEventType() == SDL_QUIT)
                 return -1;
-            if(event->getKey() == KEY_ESCAPE)
-                return 0;
+            if(event->getEventType() == KEY_PRESSED && event->getKey() == KEY_ESCAPE)
+            {
+                screen->clean(WHITE);
+                texto.centredWrite("Esta seguro que desea salir?", 200, screen->getPtr());
+                texto.centredWrite("Presione S para confirmar", 300, screen->getPtr());
+                screen->refresh();
+                fps.wait(1000);
+                while(true)
+                {
+                    event->wasEvent();
+                    if(event->getEventType() == KEY_PRESSED)
+                    {
+                        if(event->getKey() == KEY_s)
+                        {
+                            error.set(menu.run());
+                            if(error.get() > 0) return error.get();
+                            if(error.get() == -1) return -1;
+                            if(error.get() == -2) return 0;
+                        }
+                        else
+                            break;
+                    }
+                }
+            }
             pajaro.manejoEventos(event);
         }
 
@@ -134,7 +156,14 @@ int clsJuego::gameOver()
         {
             if(event->getEventType() == KEY_PRESSED)
             {
-                if(event->getKey() == KEY_ESCAPE) break;
+                if(event->getKey() == KEY_ESCAPE)
+                {
+                    fondo.paste(screen->getPtr());
+                    texto.setFontColor(WHITE);
+                    texto.write("Cargando...", 50, screen->getHeight()-100, screen->getPtr());
+                    screen->refresh();
+                    return 0;
+                }
 
                 int letra = (int) event->getKey();
                 if(letra == ' ' || (letra >= '0' && letra <= '9') || (letra >= 'a' && letra <= 'z'))
@@ -161,6 +190,7 @@ int clsJuego::gameOver()
                          screen->getHeight()/2 - marcoTexto.getHeight()/2,
                          screen->getPtr());
         texto.centredWrite("GAME OVER", 100, screen->getPtr());
+        txtPuntos.centredWrite("Ingrese un nombre:", 210, screen->getPtr());
         if(nombre[0] != '\0')
             texto.centredWrite(nombre, screen->getHeight()/2 - texto.getHeight()/2, screen->getPtr());
         screen->refresh();

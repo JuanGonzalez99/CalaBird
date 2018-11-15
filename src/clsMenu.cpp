@@ -65,7 +65,7 @@ int clsMenu::run()
                     case KEY_ESCAPE:
                     {
                         musicMenu->closeMusic();
-                        return 0;
+                        return -2;
                     }break;
                     case KEY_ENTER:
                     {
@@ -94,7 +94,7 @@ int clsMenu::run()
 
     musicMenu->closeMusic();
     if(getI() == 2)
-        return 0;
+        return -2;
 
     else if(getI() == 1)
     {
@@ -113,6 +113,7 @@ int clsMenu::run()
             itoa(puntajes.getPuntaje().getPuntos(), aux, 10);
             texto.write(aux, screen->getWidth()/2+20, x*44+142, screen->getPtr());
         }
+        texto.centredWrite("Presione ESC para volver", screen->getHeight()-30, screen->getPtr());
         screen->refresh();
 
         event->wasEvent();
@@ -122,7 +123,7 @@ int clsMenu::run()
             if(event->getEventType() == SDL_QUIT) return -1;
         }
         error.set(run());
-        if(error.get()) return error.get();
+        return error.get();
     }
 
     return 0;

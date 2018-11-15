@@ -26,7 +26,6 @@
 #include <clsText.h>
 #include <clsPuntajes.h>
 #include <clsFondo.h>
-#include <clsSoundEffect.h>
 
 class clsMenu : public clsSprite
 {
@@ -43,7 +42,6 @@ class clsMenu : public clsSprite
         clsFondo fondoPuntajes;
         clsText texto;
         clsPuntajes puntajes;
-        clsSoundEffect sonido;
 };
 
 #endif // CLSMENU_H
