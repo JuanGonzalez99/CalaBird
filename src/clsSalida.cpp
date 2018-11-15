@@ -52,8 +52,8 @@ int clsSalida::run()
 {
     error.set(0);
 
-//    music->loadMusic("");
-//    music->playMusic(-1);
+    music->loadMusic("MUSIC/SALIDA.mp3");
+    music->playMusic(-1);
 
     texto.write("Gracias por jugar!", 0, 0, screen->getPtr());
 
@@ -61,15 +61,25 @@ int clsSalida::run()
     {
         if(event->wasEvent())
         {
-            if(event->getEventType() == SDL_QUIT || event->getKey() == KEY_ESCAPE)
+            switch(event->getEventType())
             {
-                music->closeMusic();
-                return -1;
-            }
-            if(event->getKey() == KEY_ENTER)
-            {
-                music->closeMusic();
-                return 0;
+            case SDL_QUIT:
+                {
+                    return -1;
+                }break;
+            case KEY_PRESSED:
+                {
+                    if(event->getKey() == KEY_ESCAPE)
+                    {
+                        music->closeMusic();
+                        return -1;
+                    }
+                    if(event->getKey() == KEY_ENTER)
+                    {
+                        music->closeMusic();
+                        return 0;
+                    }
+                }break;
             }
         }
         timer->wait(150);

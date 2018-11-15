@@ -94,7 +94,7 @@ int clsMenu::run()
 
     musicMenu->closeMusic();
     if(getI() == 2)
-        return -1;
+        return 0;
 
     else if(getI() == 1)
     {
