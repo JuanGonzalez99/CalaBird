@@ -11,6 +11,10 @@ int clsMenu::init(clsScreen *s, clsMusic *m, clsEvent *e)
     if(error.get()) return error.get();
     error.set(texto.loadFont("FONTS/FreeMono.ttf", 30));
     if(error.get()) return error.get();
+    texto.setFontColor(WHITE);
+
+    error.set(fondoPuntajes.init("IMAGES/fondoPuntaje600x800.png"));
+    if(error.get()) return error.get();
 
     setItems(3);
     char ruta[]= "IMAGES/MENUINTRO/00.png";
@@ -61,7 +65,7 @@ int clsMenu::run()
                     case KEY_ESCAPE:
                     {
                         musicMenu->closeMusic();
-                        return -1;
+                        return 0;
                     }break;
                     case KEY_ENTER:
                     {
@@ -99,15 +103,15 @@ int clsMenu::run()
         if(puntajes.cantPuntajes()<10) cant = puntajes.cantPuntajes();
         else cant = 10;
         puntajes.cargarYordenar();
-        screen->clean(YELLOW);
+        fondoPuntajes.paste(screen->getPtr());
         for(int x=0; x<cant; x++)
         {
             puntajes.setI(x);
 
-            texto.write(puntajes.getPuntaje().getNombre(), 50, x*50+20, screen->getPtr());
+            texto.write(puntajes.getPuntaje().getNombre(), 30, x*44+142, screen->getPtr());
 
             itoa(puntajes.getPuntaje().getPuntos(), aux, 10);
-            texto.write(aux, screen->getWidth()-50, x*50+20, screen->getPtr());
+            texto.write(aux, screen->getWidth()/2+20, x*44+142, screen->getPtr());
         }
         screen->refresh();
 

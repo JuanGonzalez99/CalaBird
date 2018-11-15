@@ -25,6 +25,7 @@
 #include <clsEvent.h>
 #include <clsText.h>
 #include <clsPuntajes.h>
+#include <clsFondo.h>
 
 class clsMenu : public clsSprite
 {
@@ -38,6 +39,7 @@ class clsMenu : public clsSprite
         clsScreen *screen;
         clsMusic *musicMenu;
         clsEvent *event;
+        clsFondo fondoPuntajes;
         clsText texto;
         clsPuntajes puntajes;
 };

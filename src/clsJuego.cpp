@@ -1,3 +1,4 @@
+
 #include "clsJuego.h"
 
 int clsJuego::init(clsScreen* scr, clsEvent* ev, clsMusic* mus)
@@ -20,7 +21,7 @@ int clsJuego::init(clsScreen* scr, clsEvent* ev, clsMusic* mus)
     error.set(puntaje.init());
     if(error.get()) return error.get();
 
-    error.set(fondo.init("IMAGES/fondo600x2000.png"));
+    error.set(fondo.init("IMAGES/fondo600x3000.png"));
     if(error.get()) return error.get();
 
     error.set(paredes.init(screen, 300));
@@ -34,7 +35,7 @@ int clsJuego::init(clsScreen* scr, clsEvent* ev, clsMusic* mus)
     error.set(pajaro.init());
     if(error.get()) return error.get();
 
-    error.set(finJuego.init("IMAGES/fondo600x2000.png"));
+    error.set(finJuego.init("IMAGES/fondo600x3000.png"));
     if(error.get()) return error.get();
 
     error.set(marcoTexto.init("IMAGES/marcoTexto250x75.png"));
@@ -48,7 +49,9 @@ int clsJuego::run()
     error.set(0);
 
     error.set(menu.run());
-    if(error.get()) return error.get();
+    if(error.get() > 0) return error.get();
+    if(error.get() == -1) return -1;
+    if(error.get() == -2) return 0;
 
     char aux[5];
 
@@ -153,7 +156,7 @@ int clsJuego::gameOver()
             }
             if(event->getEventType() == SDL_QUIT) return -1;
         }
-        finJuego.paste(screen->getPtr());
+        fondo.paste(screen->getPtr());
         marcoTexto.paste(screen->getWidth()/2 - marcoTexto.getWidth()/2,
                          screen->getHeight()/2 - marcoTexto.getHeight()/2,
                          screen->getPtr());
@@ -163,7 +166,7 @@ int clsJuego::gameOver()
         screen->refresh();
     }
 
-    finJuego.paste(screen->getPtr());
+    fondo.paste(screen->getPtr());
     texto.setFontColor(WHITE);
     texto.write("Cargando...", 50, screen->getHeight()-100, screen->getPtr());
     screen->refresh();

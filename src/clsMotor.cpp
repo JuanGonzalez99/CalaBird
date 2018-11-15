@@ -42,8 +42,8 @@ int clsMotor::init()
     error.set(juego.init(&screen, &event, &music));
     if(error.get()) return error.get();
 
-//    error.set(salida.init(&screen, &music, &event, &timer));
-//    if(error.get()) return error.get();
+    error.set(salida.init(&screen, &music, &event, &timer));
+    if(error.get()) return error.get();
 
     return error.get();
 }
@@ -53,7 +53,7 @@ int clsMotor::run()
 //    error.set(intro.run());
 //    if(error.get() > 0) return error.get();
 //    if(error.get() < 0) return 0;
-
+//
     error.set(juego.run());
     if(error.get() > 0) return error.get();
     if(error.get() < 0) return 0;

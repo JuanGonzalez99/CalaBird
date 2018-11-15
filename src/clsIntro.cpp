@@ -29,8 +29,7 @@ int clsIntro::init(clsScreen *s, clsMusic *m, clsEvent *e, clsTimer *t)
             setI(d*10+u);
 
             error.set(load(ruta));
-            if(error.get())
-                return error.get();
+            if(error.get()) return error.get();
 
             if(d*10+u == 13)
                 break;
@@ -80,7 +79,7 @@ int clsIntro::run()
         screen->refresh();
     }
 
-    return 0;
+    return error.get();
 }
 
 
