@@ -20,10 +20,10 @@ int clsJuego::init(clsScreen* scr, clsEvent* ev, clsMusic* mus)
     error.set(puntaje.init());
     if(error.get()) return error.get();
 
-    error.set(fondo.init());
+    error.set(fondo.init("IMAGES/fondo600x2000.png"));
     if(error.get()) return error.get();
 
-    error.set(paredes.init(screen));
+    error.set(paredes.init(screen, 300));
     if(error.get()) return error.get();
 
     error.set(txtPuntos.init());
@@ -32,6 +32,12 @@ int clsJuego::init(clsScreen* scr, clsEvent* ev, clsMusic* mus)
     if(error.get()) return error.get();
 
     error.set(pajaro.init());
+    if(error.get()) return error.get();
+
+    error.set(finJuego.init("IMAGES/fondo600x2000.png"));
+    if(error.get()) return error.get();
+
+    error.set(marcoTexto.init("IMAGES/marcoTexto250x75.png"));
     if(error.get()) return error.get();
 
     return error.get();
@@ -99,7 +105,8 @@ int clsJuego::run()
             SDL_Delay((1000/FRAMES_POR_SEGUNDO) - fps.getState());
 
     }//Fin while
-    gameOver();
+    error.set(gameOver());
+    if(error.get()) return error.get();
 
     error.set(init(screen, event, music));
     if(error.get()) return error.get();
@@ -123,6 +130,8 @@ int clsJuego::gameOver()
         {
             if(event->getEventType() == KEY_PRESSED)
             {
+                if(event->getKey() == KEY_ESCAPE) break;
+
                 int letra = (int) event->getKey();
                 if(letra == ' ' || (letra >= '0' && letra <= '9') || (letra >= 'a' && letra <= 'z'))
                 {
@@ -141,15 +150,19 @@ int clsJuego::gameOver()
                     i--;
                 }
             }
+            if(event->getEventType() == SDL_QUIT) return -1;
         }
-        screen->clean(VIOLET);
+        finJuego.paste(screen->getPtr());
+        marcoTexto.paste(screen->getWidth()/2 - marcoTexto.getWidth()/2,
+                         screen->getHeight()/2 - marcoTexto.getHeight()/2,
+                         screen->getPtr());
         texto.centredWrite("GAME OVER", 100, screen->getPtr());
         if(nombre[0] != '\0')
             texto.centredWrite(nombre, screen->getHeight()/2 - texto.getHeight()/2, screen->getPtr());
         screen->refresh();
     }
 
-    screen->clean(BLACK);
+    finJuego.paste(screen->getPtr());
     texto.setFontColor(WHITE);
     texto.write("Cargando...", 50, screen->getHeight()-100, screen->getPtr());
     screen->refresh();

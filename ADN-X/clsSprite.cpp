@@ -75,7 +75,7 @@ clsSprite::clsSprite()
   i=0;                   // Primer elemento del vector de imagenes del sprite.
   x=0;                   // Coordenada x del sprite.
   y=0;                   // Coordenada y del sprite.
-  transparent=BLACK;     // Color considerado transparente  en el sprite.
+  transparent=PINK;     // Color considerado transparente  en el sprite.
   opacity=255;           // Nivel de opacidad (0 = transparente / 255 = opaco).
 
 

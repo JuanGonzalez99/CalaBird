@@ -17,7 +17,7 @@ class clsParedes
         clsScreen *screen;
 
     public:
-        int init(clsScreen*);
+        int init(clsScreen*, int);
         void mostrar();
         void mover(int);
         bool seTocan(clsSprite*);

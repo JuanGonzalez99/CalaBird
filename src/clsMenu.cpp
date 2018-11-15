@@ -80,40 +80,46 @@ int clsMenu::run()
                         else
                             setI(getI()+1);
                     }break;
-                }
-            }
-        }
+                }//Fin switch
+            }//Fin if KEY_PRESSED
+        }//Fin if wasEvent()
         paste(screen->getPtr());
         screen->refresh();
-    }
+    }//Fin while
+
     musicMenu->closeMusic();
     if(getI() == 2)
         return -1;
+
     else if(getI() == 1)
     {
         char aux[5];
+        int cant;
+        if(puntajes.cantPuntajes()<10) cant = puntajes.cantPuntajes();
+        else cant = 10;
         puntajes.cargarYordenar();
         screen->clean(YELLOW);
-        for(int x=0; x<puntajes.cantPuntajes(); x++)
+        for(int x=0; x<cant; x++)
         {
             puntajes.setI(x);
-            texto.write(puntajes.getPuntaje().getNombre(),
-                        50,
-                        x*50+20,
-                        screen->getPtr());
-            texto.write(itoa(puntajes.getPuntaje().getPuntos(), aux, 10),
-                        screen->getWidth()-50,
-                        x*50+20,
-                        screen->getPtr());
+
+            texto.write(puntajes.getPuntaje().getNombre(), 50, x*50+20, screen->getPtr());
+
+            itoa(puntajes.getPuntaje().getPuntos(), aux, 10);
+            texto.write(aux, screen->getWidth()-50, x*50+20, screen->getPtr());
         }
         screen->refresh();
+
+        event->wasEvent();
         while(event->getEventType() != KEY_PRESSED || event->getKey() != KEY_ESCAPE)
         {
             event->wasEvent();
             if(event->getEventType() == SDL_QUIT) return -1;
         }
-        run();
+        error.set(run());
+        if(error.get()) return error.get();
     }
+
     return 0;
 }
 

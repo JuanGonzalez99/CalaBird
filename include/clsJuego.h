@@ -22,6 +22,8 @@ class clsJuego
         clsMusic *music;
         clsScreen *screen;
         clsFondo fondo;
+        clsFondo finJuego;
+        clsFondo marcoTexto;
         clsMenu menu;
         clsPajaro pajaro;
         clsParedes paredes;

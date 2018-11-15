@@ -1,9 +1,9 @@
 #include "clsParedes.h"
 
-int clsParedes::init(clsScreen *scr)
+int clsParedes::init(clsScreen *scr, int cant)
 {
     screen = scr;
-    cantParedes = 100;
+    cantParedes = cant;
     distHorizontal = 450;
     distVertical = 150;
 
@@ -24,10 +24,10 @@ int clsParedes::init(clsScreen *scr)
         if(error.get()) return error.get();
 
         superiores[x].setY(random.getNumber(screen->getHeight()-distVertical*2)+distVertical-screen->getHeight());
-        superiores[x].setX(distHorizontal*x+screen->getWidth()*3/2);
+        superiores[x].setX(distHorizontal*x+(screen->getWidth()*3/2));
 
         inferiores[x].setY(superiores[x].getY()+screen->getHeight()+distVertical);
-        inferiores[x].setX(distHorizontal*x+screen->getWidth()*3/2);
+        inferiores[x].setX(distHorizontal*x+(screen->getWidth()*3/2));
     }
 
     return 0;
@@ -37,8 +37,10 @@ void clsParedes::mostrar()
 {
     for(int x=0; x<cantParedes; x++)
     {
-        superiores[x].paste(screen->getPtr());
-        inferiores[x].paste(screen->getPtr());
+        if(superiores[x].getX() <= screen->getWidth() && superiores[x].getX() >= -superiores[x].getWidth())
+            superiores[x].paste(screen->getPtr());
+        if(inferiores[x].getX() <= screen->getWidth() && inferiores[x].getX() >= -inferiores[x].getWidth())
+            inferiores[x].paste(screen->getPtr());
     }
 }
 

@@ -10,7 +10,7 @@ class clsFondo : public clsSprite
 
     public:
         void inherit(){}
-        int init();
+        int init(const char*);
 };
 
 #endif // CLSFONDO_H
