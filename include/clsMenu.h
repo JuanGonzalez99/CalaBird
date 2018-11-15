@@ -2,7 +2,7 @@
 // ARCHIVO             : clsMotor.h
 // AUTOR               : Javier Pereyra.
 // VERSION             : 1.0.
-// FECHA DE CREACION   : 06/10/2018.
+// FECHA DE CREACION   : 06/11/2018.
 // ULTIMA ACTUALIZACION: 15/11/2018.          .
 // LICENCIA            : GPL (General Public License) - Version 3.
 //=============================================================================

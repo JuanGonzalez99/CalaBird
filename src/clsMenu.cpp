@@ -1,8 +1,8 @@
 //#############################################################################
-// ARCHIVO             : clsMotor.cpp
+// ARCHIVO             : clsMenu.cpp
 // AUTOR               : Javier Eduardo Pereyra/Juan Agustin Gonzalez
 // VERSION             : 1.0.
-// FECHA DE CREACION   : 06/10/2018.
+// FECHA DE CREACION   : 06/11/2018.
 // ULTIMA ACTUALIZACION: 15/11/2018.          .
 // LICENCIA             : GPL (General Public License) - Version 3.
 //=============================================================================
@@ -11,14 +11,22 @@
 // COMPILADOR          : GNU GCC Compiler (Linux) / MinGW (Windows).
 //=============================================================================
 // DESCRIPCION: Este archivo contiene la definición de los métodos de la clas
-//              "clsMotor".
+//              "clsMenu".
 //
-//              "clsMotor" consta de los objetos necesarios para levantar el
-//              modo gráfico, la presentación, el juego y la salida.
+//              "clsMenu" consta de los métodos necesarios para el control del
+//              juego con un sistema de menú.
 //
 ///////////////////////////////////////////////////////////////////////////////
 #include "clsMenu.h"
 
+//=============================================================================
+// METODO    : int init(clsScreen* scr, clsEvent* ev, clsMusic* mus)
+// ACCION    : Inicializa los objetos de la clase.
+// PARAMETROS: clsScreen* s --> puntero a la pantalla.
+//             clsMusic* m --> puntero a la música.
+//             clsEvent* e --> puntero al manager de eventos.
+// DEVUELVE  : int --> codigo de error. (0 = todo bien)
+//-----------------------------------------------------------------------------
 int clsMenu::init(clsScreen *s, clsMusic *m, clsEvent *e)
 {
     screen = s;
@@ -56,6 +64,12 @@ int clsMenu::init(clsScreen *s, clsMusic *m, clsEvent *e)
     return error.get();
 }
 
+//=============================================================================
+// METODO    : int run()
+// ACCION    : Dispone el menú al jugador y toma acciones según su decisión.
+// PARAMETROS: NADA.
+// DEVUELVE  : int --> codigo de error. (0 = todo bien)
+//-----------------------------------------------------------------------------
 int clsMenu::run()
 {
     error.set(0);

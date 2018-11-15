@@ -10,15 +10,23 @@
 // IDE                 : Code::Blocks - 17.12.
 // COMPILADOR          : GNU GCC Compiler (Linux) / MinGW (Windows).
 //=============================================================================
-// DESCRIPCION: Este archivo contiene la definición de los métodos de la clas
-//              "clsMotor".
+// DESCRIPCION: Este archivo contiene la definición de los métodos de la clase
+//              "clsParedes".
 //
-//              "clsMotor" consta de los objetos necesarios para levantar el
-//              modo gráfico, la presentación, el juego y la salida.
+//              "clsParedes" consta de los atributos y métodos necesarios para
+//              poder trabajar cómodamente con varios objetos de la clase
+//              "clsPared".
 //
 ///////////////////////////////////////////////////////////////////////////////
 #include "clsParedes.h"
 
+//=============================================================================
+// METODO    : int init(clsScreen *scr, int cant)
+// ACCION    : Inicializa los atributos de la clase, incluyendo las paredes.
+// PARAMETROS: clsScreen *scr --> puntero a la pantalla.
+//             int cant --> cantidad de paredes a utilizar.
+// DEVUELVE  : int --> codigo de error. (0 = todo bien)
+//-----------------------------------------------------------------------------
 int clsParedes::init(clsScreen *scr, int cant)
 {
     screen = scr;
@@ -52,6 +60,13 @@ int clsParedes::init(clsScreen *scr, int cant)
     return 0;
 }
 
+//=============================================================================
+// METODO    : void mostrar()
+// ACCION    : Pega en pantalla todas las paredes cuya 'X' no se exceda de la
+//             misma.
+// PARAMETROS: NADA.
+// DEVUELVE  : NADA.
+//-----------------------------------------------------------------------------
 void clsParedes::mostrar()
 {
     for(int x=0; x<cantParedes; x++)
@@ -63,6 +78,13 @@ void clsParedes::mostrar()
     }
 }
 
+//=============================================================================
+// METODO    : void mover(int dist)
+// ACCION    : Mueve todos las paredes hacia la izquierda según el entero
+//             pasado por parámetro.
+// PARAMETROS: int dist --> cantidad de píxeles a mover.
+// DEVUELVE  : NADA.
+//-----------------------------------------------------------------------------
 void clsParedes::mover(int dist)
 {
     for(int x=0; x<cantParedes; x++)
@@ -72,6 +94,13 @@ void clsParedes::mover(int dist)
     }
 }
 
+//=============================================================================
+// METODO    : bool seTocan(clsSprite *sprite)
+// ACCION    : Evalúa si el sprite pasado por parámetro se toca con alguna de
+//             las paredes.
+// PARAMETROS: clsSprite *sprite --> puntero al sprite a evaluar.
+// DEVUELVE  : bool --> false si no se toca con ninguna, true caso contrario.
+//-----------------------------------------------------------------------------
 bool clsParedes::seTocan(clsSprite *sprite)
 {
     for(int x=0; x<cantParedes; x++)
@@ -85,6 +114,13 @@ bool clsParedes::seTocan(clsSprite *sprite)
     return false;
 }
 
+//=============================================================================
+// METODO    : int pasadas(clsSprite *spr)
+// ACCION    : Cuenta la cantidad de paredes pasadas por el sprite que se pasa
+//             por parámetro.
+// PARAMETROS: clsSprite *spr --> puntero al sprite a evaluar.
+// DEVUELVE  : int --> cantidad de paredes pasadas por el sprite.
+//-----------------------------------------------------------------------------
 int clsParedes::pasadas(clsSprite *spr)
 {
     int cont=0;
@@ -98,6 +134,12 @@ int clsParedes::pasadas(clsSprite *spr)
     return cont;
 }
 
+//=============================================================================
+// METODO    : ~clsParedes()
+// ACCION    : Destructor implicito.
+// PARAMETROS: NADA.
+// DEVUELVE  : NADA.
+//-----------------------------------------------------------------------------
 clsParedes::~clsParedes()
 {
     delete inferiores;

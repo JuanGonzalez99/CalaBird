@@ -1,4 +1,21 @@
-
+//#############################################################################
+// ARCHIVO             : clsJuego.h
+// AUTOR               : Juan Agustin Gonzalez.
+// VERSION             : 1.0.
+// FECHA DE CREACION   : 30/10/2018.
+// ULTIMA ACTUALIZACION: 15/11/2018.          .
+// LICENCIA            : GPL (General Public License) - Version 3.
+//=============================================================================
+// SISTEMA OPERATIVO   : Linux / Windows.
+// IDE                 : Code::Blocks - 17.12.
+// COMPILADOR          : GNU GCC Compiler (Linux) / MinGW (Windows).
+//=============================================================================
+// DESCRIPCION: Este archivo contiene los encabezados de la clase "clsJuego".
+//
+//              "clsJuego" consta de los objetos y métodos necesarios para el
+//              funcionamiento del juego en sí.
+//
+///////////////////////////////////////////////////////////////////////////////
 #ifndef CLSJUEGO_H
 #define CLSJUEGO_H
 

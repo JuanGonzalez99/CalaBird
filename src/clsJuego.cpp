@@ -1,8 +1,8 @@
 //#############################################################################
-// ARCHIVO             : clsMotor.cpp
+// ARCHIVO             : clsJuego.cpp
 // AUTOR               : Juan Agustin Gonzalez
 // VERSION             : 1.0.
-// FECHA DE CREACION   : 06/10/2018.
+// FECHA DE CREACION   : 06/11/2018.
 // ULTIMA ACTUALIZACION: 15/11/2018.          .
 // LICENCIA             : GPL (General Public License) - Version 3.
 //=============================================================================
@@ -10,15 +10,23 @@
 // IDE                 : Code::Blocks - 17.12.
 // COMPILADOR          : GNU GCC Compiler (Linux) / MinGW (Windows).
 //=============================================================================
-// DESCRIPCION: Este archivo contiene la definición de los métodos de la clas
-//              "clsMotor".
+// DESCRIPCION: Este archivo contiene la definición de los métodos de la clase
+//              "clsJuego".
 //
-//              "clsMotor" consta de los objetos necesarios para levantar el
-//              modo gráfico, la presentación, el juego y la salida.
+//              "clsJuego" consta de los objetos y métodos necesarios para el
+//              funcionamiento del juego en sí.
 //
 ///////////////////////////////////////////////////////////////////////////////
 #include "clsJuego.h"
 
+//=============================================================================
+// METODO    : int init(clsScreen* scr, clsEvent* ev, clsMusic* mus)
+// ACCION    : Inicializa los objetos de la clase.
+// PARAMETROS: clsScreen* scr --> puntero a la pantalla.
+//             clsEvent* ev --> puntero al manager de eventos.
+//             clsMusic* mus --> puntero a la música.
+// DEVUELVE  : int --> codigo de error. (0 = todo bien)
+//-----------------------------------------------------------------------------
 int clsJuego::init(clsScreen* scr, clsEvent* ev, clsMusic* mus)
 {
     error.set(0);
@@ -62,6 +70,12 @@ int clsJuego::init(clsScreen* scr, clsEvent* ev, clsMusic* mus)
     return error.get();
 }
 
+//=============================================================================
+// METODO    : int run()
+// ACCION    : Pone en funcionamiento el juego.
+// PARAMETROS: NADA.
+// DEVUELVE  : int --> codigo de error. (0 = todo bien)
+//-----------------------------------------------------------------------------
 int clsJuego::run()
 {
     error.set(0);
@@ -161,6 +175,12 @@ int clsJuego::run()
     return error.get();
 }
 
+//=============================================================================
+// METODO    : int gameOver()
+// ACCION    : Se encarga de pedirle nombre al jugador al finalizar la partida.
+// PARAMETROS: NADA.
+// DEVUELVE  : int --> codigo de error. (0 = todo bien)
+//-----------------------------------------------------------------------------
 int clsJuego::gameOver()
 {
     error.set(0);

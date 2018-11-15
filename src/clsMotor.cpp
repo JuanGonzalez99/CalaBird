@@ -19,6 +19,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "clsMotor.h"
 
+//=============================================================================
+// METODO    : int init()
+// ACCION    : Inicializa los objetos de la clase.
+// PARAMETROS: NADA.
+// DEVUELVE  : int --> codigo de error. (0 = todo bien)
+//-----------------------------------------------------------------------------
 int clsMotor::init()
 {
     error.set(0);
@@ -53,7 +59,7 @@ int clsMotor::run()
     error.set(intro.run());
     if(error.get() > 0) return error.get();
     if(error.get() < 0) return 0;
-//
+
     error.set(juego.run());
     if(error.get() > 0) return error.get();
     if(error.get() < 0) return 0;

@@ -11,14 +11,23 @@
 // COMPILADOR          : GNU GCC Compiler (Linux) / MinGW (Windows).
 //=============================================================================
 // DESCRIPCION: Este archivo contiene la definición de los métodos de la clas
-//              "clsMotor".
+//              "clsIntro".
 //
-//              "clsMotor" consta de los objetos necesarios para levantar el
-//              modo gráfico, la presentación, el juego y la salida.
+//              "clsIntro" consta de los objetos necesarios para los objetos y
+//              métodos necesarios para levantar la presentación del juego.
 //
 ///////////////////////////////////////////////////////////////////////////////
 #include "clsIntro.h"
 
+//=============================================================================
+// METODO    : int init(clsScreen* scr, clsEvent* ev, clsMusic* mus)
+// ACCION    : Inicializa los objetos de la clase.
+// PARAMETROS: clsScreen* s --> puntero a la pantalla.
+//             clsMusic* m --> puntero a la música.
+//             clsEvent* e --> puntero al manager de eventos.
+//             clsTimer *t --> puntero a un minutero virtual.
+// DEVUELVE  : int --> codigo de error. (0 = todo bien)
+//-----------------------------------------------------------------------------
 int clsIntro::init(clsScreen *s, clsMusic *m, clsEvent *e, clsTimer *t)
 {
     screen = s;
@@ -68,6 +77,12 @@ void clsIntro::animar()
         setI(getI() + 1);
 }
 
+//=============================================================================
+// METODO    : int run()
+// ACCION    : Dispone la presentación a la espera del jugador.
+// PARAMETROS: NADA.
+// DEVUELVE  : int --> codigo de error. (0 = todo bien)
+//-----------------------------------------------------------------------------
 int clsIntro::run()
 {
     error.set(0);
@@ -100,14 +115,4 @@ int clsIntro::run()
 
     return error.get();
 }
-
-
-
-
-
-
-
-
-
-
 
