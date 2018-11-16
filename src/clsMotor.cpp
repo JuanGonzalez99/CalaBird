@@ -54,6 +54,13 @@ int clsMotor::init()
     return error.get();
 }
 
+//=============================================================================
+// METODO    : int run()
+// ACCION    : Administra los objetos de intro, juego y salida para su correcto
+//             funcionamiento y disposición.
+// PARAMETROS: NADA.
+// DEVUELVE  : int --> codigo de error. (0 = todo bien)
+//-----------------------------------------------------------------------------
 int clsMotor::run()
 {
     error.set(intro.run());

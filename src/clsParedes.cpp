@@ -1,10 +1,10 @@
 //#############################################################################
-// ARCHIVO             : clsMotor.cpp
+// ARCHIVO             : clsParedes.cpp
 // AUTOR               : Juan Agustin Gonzalez
 // VERSION             : 1.0.
-// FECHA DE CREACION   : 06/10/2018.
-// ULTIMA ACTUALIZACION: 15/11/2018.          .
-// LICENCIA             : GPL (General Public License) - Version 3.
+// FECHA DE CREACION   : 10/11/2018.
+// ULTIMA ACTUALIZACION: 13/11/2018.
+// LICENCIA            : GPL (General Public License) - Version 3.
 //=============================================================================
 // SISTEMA OPERATIVO   : Linux / Windows.
 // IDE                 : Code::Blocks - 17.12.

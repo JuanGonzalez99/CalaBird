@@ -1,24 +1,33 @@
 //#############################################################################
-// ARCHIVO             : clsMotor.cpp
-// AUTOR               : Javier Eduardo Pereyra
+// ARCHIVO             : clsSalida.cpp
+// AUTOR               : Javier Pereyra
 // VERSION             : 1.0.
 // FECHA DE CREACION   : 06/10/2018.
-// ULTIMA ACTUALIZACION: 15/11/2018.          .
-// LICENCIA             : GPL (General Public License) - Version 3.
+// ULTIMA ACTUALIZACION: 15/11/2018.
+// LICENCIA            : GPL (General Public License) - Version 3.
 //=============================================================================
 // SISTEMA OPERATIVO   : Linux / Windows.
 // IDE                 : Code::Blocks - 17.12.
 // COMPILADOR          : GNU GCC Compiler (Linux) / MinGW (Windows).
 //=============================================================================
-// DESCRIPCION: Este archivo contiene la definición de los métodos de la clas
-//              "clsMotor".
+// DESCRIPCION: Este archivo contiene la definición de los métodos de la clase
+//              "clsSalida".
 //
-//              "clsMotor" consta de los objetos necesarios para levantar el
-//              modo gráfico, la presentación, el juego y la salida.
+//              "clsSalida" consta de los objetos y métodos necesarios para
+//              levantar la despedida del juego.
 //
 ///////////////////////////////////////////////////////////////////////////////
 #include "clsSalida.h"
 
+//=============================================================================
+// METODO    : int init(clsScreen* scr, clsEvent* ev, clsMusic* mus)
+// ACCION    : Inicializa los objetos de la clase.
+// PARAMETROS: clsScreen* s --> puntero a la pantalla.
+//             clsMusic* m --> puntero a la música.
+//             clsEvent* e --> puntero al manager de eventos.
+//             clsTimer *t --> puntero a un minutero virtual.
+// DEVUELVE  : int --> codigo de error. (0 = todo bien)
+//-----------------------------------------------------------------------------
 int clsSalida::init(clsScreen *s, clsMusic *m, clsEvent* e, clsTimer *t)
 {
     error.set(0);
@@ -56,6 +65,13 @@ int clsSalida::init(clsScreen *s, clsMusic *m, clsEvent* e, clsTimer *t)
     return error.get();
 }
 
+//=============================================================================
+// METODO    : void animar()
+// ACCION    : Pega la imagen actual en pantalla y se prepara para pegar la
+//             siguiente.
+// PARAMETROS: NADA.
+// DEVUELVE  : NADA.
+//-----------------------------------------------------------------------------
 void clsSalida::animar()
 {
     paste(screen->getWidth()/2 - getWidth()/2,
@@ -67,6 +83,12 @@ void clsSalida::animar()
         setI(getI() + 1);
 }
 
+//=============================================================================
+// METODO    : int run()
+// ACCION    : Dispone la despedida del juego a la espera del jugador.
+// PARAMETROS: NADA.
+// DEVUELVE  : int --> codigo de error. (0 = todo bien)
+//-----------------------------------------------------------------------------
 int clsSalida::run()
 {
     error.set(0);

@@ -1,20 +1,20 @@
 //#############################################################################
-// ARCHIVO             : clsMotor.cpp
+// ARCHIVO             : clsIntro.cpp
 // AUTOR               : Javier Pereyra
 // VERSION             : 1.0.
 // FECHA DE CREACION   : 06/10/2018.
-// ULTIMA ACTUALIZACION: 15/11/2018.          .
+// ULTIMA ACTUALIZACION: 15/11/2018.
 // LICENCIA             : GPL (General Public License) - Version 3.
 //=============================================================================
 // SISTEMA OPERATIVO   : Linux / Windows.
 // IDE                 : Code::Blocks - 17.12.
 // COMPILADOR          : GNU GCC Compiler (Linux) / MinGW (Windows).
 //=============================================================================
-// DESCRIPCION: Este archivo contiene la definición de los métodos de la clas
+// DESCRIPCION: Este archivo contiene la definición de los métodos de la clase
 //              "clsIntro".
 //
-//              "clsIntro" consta de los objetos necesarios para los objetos y
-//              métodos necesarios para levantar la presentación del juego.
+//              "clsIntro" consta de los objetos y métodos necesarios para
+//              levantar la presentación del juego.
 //
 ///////////////////////////////////////////////////////////////////////////////
 #include "clsIntro.h"
@@ -68,6 +68,13 @@ int clsIntro::init(clsScreen *s, clsMusic *m, clsEvent *e, clsTimer *t)
     return error.get();
 }
 
+//=============================================================================
+// METODO    : void animar()
+// ACCION    : Pega la imagen actual en pantalla y se prepara para pegar la
+//             siguiente.
+// PARAMETROS: NADA.
+// DEVUELVE  : NADA.
+//-----------------------------------------------------------------------------
 void clsIntro::animar()
 {
     paste(screen->getPtr());

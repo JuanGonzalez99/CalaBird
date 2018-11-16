@@ -4,7 +4,7 @@
 // VERSION             : 1.0.
 // FECHA DE CREACION   : 06/11/2018.
 // ULTIMA ACTUALIZACION: 15/11/2018.          .
-// LICENCIA             : GPL (General Public License) - Version 3.
+// LICENCIA            : GPL (General Public License) - Version 3.
 //=============================================================================
 // SISTEMA OPERATIVO   : Linux / Windows.
 // IDE                 : Code::Blocks - 17.12.
@@ -125,34 +125,46 @@ int clsMenu::run()
     }//Fin while
 
     musicMenu->closeMusic();
+
     if(getI() == 2)
+    {
         return -2;
+    }
 
     else if(getI() == 1)
     {
         char aux[5];
         int cant;
-        if(puntajes.cantPuntajes()<10) cant = puntajes.cantPuntajes();
-        else cant = 10;
-        puntajes.cargarYordenar();
-        fondoPuntajes.paste(screen->getPtr());
-        for(int x=0; x<cant; x++)
+        while(true)
         {
-            puntajes.setI(x);
+            if(event->wasEvent())
+            {
+                if(event->getEventType() == SDL_QUIT) return -1;
+                if(event->getEventType() == KEY_PRESSED)
+                {
+                    if(event->getKey() == KEY_ESCAPE) break;
+                    if(event->getKey() == KEY_b)
+                    {
+                        puntajes.borrar();
+                    }
+                }
+            }
+            if(puntajes.cantPuntajes()<10) cant = puntajes.cantPuntajes();
+            else cant = 10;
+            puntajes.cargarYordenar();
+            fondoPuntajes.paste(screen->getPtr());
+            for(int x=0; x<cant; x++)
+            {
+                puntajes.setI(x);
 
-            texto.write(puntajes.getPuntaje().getNombre(), 30, x*44+142, screen->getPtr());
+                texto.write(puntajes.getPuntaje().getNombre(), 30, x*44+142, screen->getPtr());
 
-            itoa(puntajes.getPuntaje().getPuntos(), aux, 10);
-            texto.write(aux, screen->getWidth()/2+20, x*44+142, screen->getPtr());
-        }
-        texto.centredWrite("Presione ESC para volver", screen->getHeight()-30, screen->getPtr());
-        screen->refresh();
-
-        event->wasEvent();
-        while(event->getEventType() != KEY_PRESSED || event->getKey() != KEY_ESCAPE)
-        {
-            event->wasEvent();
-            if(event->getEventType() == SDL_QUIT) return -1;
+                itoa(puntajes.getPuntaje().getPuntos(), aux, 10);
+                texto.write(aux, screen->getWidth()/2+20, x*44+142, screen->getPtr());
+            }
+            texto.write("ESC para volver", 10, screen->getHeight()-30, screen->getPtr());
+            texto.write("B para borrar puntajes", screen->getWidth()/2, screen->getHeight()-30, screen->getPtr());
+            screen->refresh();
         }
         error.set(run());
         return error.get();
@@ -160,16 +172,4 @@ int clsMenu::run()
 
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
